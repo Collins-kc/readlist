@@ -44,8 +44,7 @@ Then open `index.html` with Live Server. To use the local API, change `API_URL` 
 
 ## Links
 - Live app: https://Collins-kc.github.io/readlist/
-- Figma wireframe: YOUR-FIGMA-LINK
-- API: https://YOUR-APP.onrender.com/books
+- API: https://readlist-api.onrender.com/books
 
 ## Run the Tests
 ```bash
