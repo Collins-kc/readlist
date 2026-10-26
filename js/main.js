@@ -1,8 +1,8 @@
-import { searchBooks, addBook, getBooks } from "./api.js";
+import { searchBooks, addBook, getBooks, updateBook, updateStatus, deleteBook } from "./api.js";
 import { renderResults, renderList, showMessage } from "./ui.js";
 
 let searchResults = [];
-let readingList = [];
+
 let readingList = [];
 
 const searchForm = document.getElementById("search-form");
@@ -60,3 +60,32 @@ async function loadList() {
 }
 
 loadList();
+
+// Buttons inside the list: save notes (PUT) and delete (DELETE)
+listEl.addEventListener("click", async (event) => {
+  const card = event.target.closest(".card");
+  if (!card) return;
+  const id = card.dataset.id;
+
+  if (event.target.matches(".save-btn")) {
+    const book = readingList.find((b) => String(b.id) === id);
+    const notes = card.querySelector(".notes").value;
+    try {
+      await updateBook(id, { ...book, notes });
+      showMessage("Notes saved!", "success");
+      await loadList();
+    } catch (error) {
+      showMessage(error.message, "error");
+    }
+  }
+
+  if (event.target.matches(".delete-btn")) {
+    try {
+      await deleteBook(id);
+      showMessage("Book removed.", "success");
+      await loadList();
+    } catch (error) {
+      showMessage(error.message, "error");
+    }
+  }
+});
