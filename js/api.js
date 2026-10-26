@@ -49,3 +49,24 @@ export async function deleteBook(id) {
   const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
   if (!res.ok) throw new Error("Could not delete book");
 }
+
+
+export async function updateBook(id, book) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(book),
+  });
+  if (!res.ok) throw new Error("Could not update book");
+  return res.json();
+}
+
+export async function updateStatus(id, status) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+  if (!res.ok) throw new Error("Could not update status");
+  return res.json();
+}
