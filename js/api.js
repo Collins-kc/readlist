@@ -1,5 +1,5 @@
 const OPEN_LIBRARY = "https://openlibrary.org/search.json";
-const API_URL = "http://localhost:3000/books";
+const API_URL = "https://readlist-api.onrender.com/books";
 
 export async function searchBooks(query) {
   const res = await fetch(`${OPEN_LIBRARY}?q=${encodeURIComponent(query)}&limit=10`);
