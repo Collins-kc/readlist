@@ -17,3 +17,11 @@ export async function addBook(book) {
   if (!res.ok) throw new Error("Could not add book");
   return res.json();
 }
+ 
+
+export async function getBooks(status = "") {
+  const url = status ? `${API_URL}?status=${encodeURIComponent(status)}` : API_URL;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Could not load your list");
+  return res.json();
+}
