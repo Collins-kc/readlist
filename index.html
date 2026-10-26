@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReadList</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>📚 ReadList</h1>
+    <p>Search books and track your reading</p>
+  </header>
+
+  <main>
+    <p id="message" class="message" role="status" hidden></p>
+    <p id="loading" class="loading" hidden>Loading...</p>
+
+    <section id="search-section">
+      <h2>Search Books</h2>
+      <form id="search-form">
+        <label for="search-input">Book title</label>
+        <input type="text" id="search-input" placeholder="e.g. Things Fall Apart">
+        <button type="submit">Search</button>
+      </form>
+      <div id="results" class="grid"></div>
+    </section>
+
+    <section id="list-section">
+      <h2>My Reading List</h2>
+      <div class="filters">
+        <button class="filter-btn active" data-status="">All</button>
+        <button class="filter-btn" data-status="Want to read">Want to read</button>
+        <button class="filter-btn" data-status="Reading">Reading</button>
+        <button class="filter-btn" data-status="Finished">Finished</button>
+      </div>
+      <div id="reading-list" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>ReadList &copy; 2026</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
