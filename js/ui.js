@@ -51,3 +51,43 @@ export function renderResults(books) {
     resultsEl.append(card);
   });
 }
+
+
+export function renderList(books) {
+  listEl.innerHTML = "";
+  if (books.length === 0) {
+    listEl.append(make("p", "", "Your list is empty. Search for a book to add!"));
+    return;
+  }
+  books.forEach((book) => {
+    const card = make("article", "card");
+    card.dataset.id = book.id;
+
+    const img = make("img");
+    img.src = coverUrl(book.coverId);
+    img.alt = `Cover of ${book.title}`;
+
+    const select = make("select", "status-select");
+    ["Want to read", "Reading", "Finished"].forEach((status) => {
+      const option = make("option", "", status);
+      option.value = status;
+      option.selected = status === book.status;
+      select.append(option);
+    });
+
+    const notes = make("textarea", "notes");
+    notes.value = book.notes || "";
+    notes.placeholder = "Your notes...";
+
+    card.append(
+      img,
+      make("h3", "", book.title),
+      make("p", "author", book.author),
+      select,
+      notes,
+      make("button", "save-btn", "Save notes"),
+      make("button", "delete-btn", "Delete")
+    );
+    listEl.append(card);
+  });
+}

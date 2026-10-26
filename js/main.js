@@ -1,7 +1,9 @@
-import { searchBooks, addBook } from "./api.js";
-import { renderResults, showMessage } from "./ui.js";
+import { searchBooks, addBook, getBooks } from "./api.js";
+import { renderResults, renderList, showMessage } from "./ui.js";
 
 let searchResults = [];
+let readingList = [];
+let readingList = [];
 
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
@@ -38,6 +40,7 @@ async function handleResultsClick(event) {
   const book = toBook(searchResults[button.dataset.index]);
   try {
     await addBook(book);
+    await loadList();
     showMessage(`"${book.title}" added to your list!`, "success");
   } catch (error) {
     showMessage(error.message, "error");
@@ -45,3 +48,15 @@ async function handleResultsClick(event) {
 }
 
 document.getElementById("results").addEventListener("click", handleResultsClick);
+
+
+async function loadList() {
+  try {
+    readingList = await getBooks();
+    renderList(readingList);
+  } catch (error) {
+    showMessage(error.message, "error");
+  }
+}
+
+loadList();
