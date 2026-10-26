@@ -1,4 +1,4 @@
-import { searchBooks, addBook, getBooks } from "./api.js";
+import { searchBooks, addBook, getBooks, updateBook, updateStatus } from "./api.js";
 import { renderResults, renderList, showMessage } from "./ui.js";
 
 let searchResults = [];
@@ -60,3 +60,38 @@ async function loadList() {
 }
 
 loadList();
+
+
+const listEl = document.getElementById("reading-list");
+
+// Status dropdown changed (PATCH)
+listEl.addEventListener("change", async (event) => {
+  if (!event.target.matches(".status-select")) return;
+  const id = event.target.closest(".card").dataset.id;
+  try {
+    await updateStatus(id, event.target.value);
+    showMessage("Status updated!", "success");
+    await loadList();
+  } catch (error) {
+    showMessage(error.message, "error");
+  }
+});
+
+// Save notes button (PUT)
+listEl.addEventListener("click", async (event) => {
+  const card = event.target.closest(".card");
+  if (!card) return;
+  const id = card.dataset.id;
+
+  if (event.target.matches(".save-btn")) {
+    const book = readingList.find((b) => String(b.id) === id);
+    const notes = card.querySelector(".notes").value;
+    try {
+      await updateBook(id, { ...book, notes });
+      showMessage("Notes saved!", "success");
+      await loadList();
+    } catch (error) {
+      showMessage(error.message, "error");
+    }
+  }
+});
