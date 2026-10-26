@@ -52,7 +52,6 @@ export function renderResults(books) {
   });
 }
 
-
 export function renderList(books) {
   listEl.innerHTML = "";
   if (books.length === 0) {
