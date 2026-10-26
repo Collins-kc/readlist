@@ -25,3 +25,9 @@ export async function getBooks(status = "") {
   if (!res.ok) throw new Error("Could not load your list");
   return res.json();
 }
+
+
+export async function deleteBook(id) {
+  const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  if (!res.ok) throw new Error("Could not delete book");
+}
