@@ -7,3 +7,13 @@ export async function searchBooks(query) {
   const data = await res.json();
   return data.docs;
 }
+
+export async function addBook(book) {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(book),
+  });
+  if (!res.ok) throw new Error("Could not add book");
+  return res.json();
+}
