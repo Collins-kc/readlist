@@ -18,7 +18,6 @@ ReadList lets users search for books with the Open Library API, add them to a pe
 - Delete books
 - Filter the list by status
 - Validation, loading messages and friendly error messages
-- Responsive layout for tablet and phone
 
 ## Tech Used
 HTML, CSS, JavaScript (ES modules), JSON Server, Vitest, Render, GitHub Pages
@@ -43,7 +42,8 @@ Then open `index.html` with Live Server. To use the local API, change `API_URL` 
 | DELETE | /books/:id | Remove a book |
 
 ## Links
-- Live app: https://Collins-kc.github.io/readlist/
+- Live app: https://collins-kc.github.io/readlist/
+- Figma wireframe: https://www.figma.com/design/07zz51KhV6iinG54HNZdqU/ReadList-Wireframe?node-id=0-1&t=TnnV6RShECeD6sXT-1
 - API: https://readlist-api.onrender.com/books
 
 ## Run the Tests
